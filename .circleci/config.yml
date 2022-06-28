@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: "persist data to output.txt"
-          command: echo "text to output here" > output.txt
+          command: echo "Hello from Paul Silanka" > output.txt
       - persist_to_workspace:
           root: .
           paths:
