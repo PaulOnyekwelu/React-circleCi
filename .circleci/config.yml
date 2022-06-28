@@ -7,7 +7,7 @@ version: 2.1
 jobs:
   save_hello_world_output:
     docker:
-      - image: jruby:9.3
+      - image: cimg/node:18.4.0
     steps:
       - checkout
       - run:
@@ -18,7 +18,7 @@ jobs:
       - path: output.txt
   print_output_file:
     docker:
-      - image: jruby:9.3
+      - image: cimg/node:18.4.0
     attach_workspace:
       keys:
         - /tmp/workspace
