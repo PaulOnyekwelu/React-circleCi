@@ -14,8 +14,9 @@ jobs:
           name: "persist data to output.txt"
           command: echo "text to output here" > output.txt
       - persist_to_workspace:
-          root: /tmp/workspace
-          paths: output.txt
+          root: .
+          paths:
+            - .
 
   print_output_file:
     docker:
