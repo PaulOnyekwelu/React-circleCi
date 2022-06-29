@@ -17,8 +17,11 @@ commands:
   on_fail_command:
     steps:
       - run:
-          name: intended to fail
+          name: "intended to fail"
           command: return 1
+      - run:
+          name: "run on failure"
+          command: echo "Hello Error! from $CIRCLE_WORKFLOW_ID"
           when: on_fail
 
 # Define a job to be invoked later in a workflow.
@@ -54,6 +57,7 @@ jobs:
   intentional_fail:
     <<: *docker_default
     steps:
+      - checkout
       - on_fail_command
 
 # Invoke jobs via workflows
