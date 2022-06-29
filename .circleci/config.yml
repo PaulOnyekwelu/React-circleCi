@@ -15,10 +15,10 @@ commands:
       - run:
           name: "build react app"
           command: npm run build
-      - save_cache:
-          key: "node_modules"
-          paths:
-            - /node_modules
+      # - save_cache:
+      #     key: "node_modules"
+      #     paths:
+      #       - /node_modules
       - save_cache:
           key: "build_folder"
           paths:
@@ -26,9 +26,9 @@ commands:
   test_command:
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - "node_modules"
+      # - restore_cache:
+      #     keys:
+      #       - "node_modules"
       - install_command
       - run:
           name: "testing app"
