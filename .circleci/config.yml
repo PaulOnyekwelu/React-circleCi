@@ -2,12 +2,24 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+docker_default: &docker_default #anchors
+  docker:
+    - image: cimg/node:18.4.0
+
+commands:
+  print_pipeline_id:
+    parameters:
+      val:
+        type: string
+        default: "no result found"
+    steps:
+      - run: echo "workflow id: <<parameters.val>>"
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   save_hello_world_output:
-    docker:
-      - image: cimg/node:18.4.0
+    <<: *docker_default # aliases
     steps:
       - checkout
       - run:
@@ -19,8 +31,7 @@ jobs:
             - .
 
   print_output_file:
-    docker:
-      - image: cimg/node:18.4.0
+    <<: *docker_default
     steps:
       - checkout
       - attach_workspace:
@@ -28,6 +39,12 @@ jobs:
       - run:
           name: "Print output.txt to console"
           command: cat output.txt
+  print_pipeline_id_info:
+    <<: *docker_default
+    steps:
+      - checkout
+      - print_pipeline_id:
+          val: $CIRCLE_WORKFLOW_ID
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
