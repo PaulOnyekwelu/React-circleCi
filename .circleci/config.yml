@@ -26,7 +26,8 @@ commands:
     steps:
       - checkout
       - restore_cache:
-          key: "node_modules"
+          keys:
+            - "node_modules"
       - run:
           name: "testing app"
           command: npm run test
