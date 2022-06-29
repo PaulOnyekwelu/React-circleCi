@@ -5,12 +5,12 @@ docker_default: &docker_default
     - image: cimg/node:18.4.0
 
 commands:
+  install_command:
+    - run: npm i
   build_command:
     steps:
       - checkout
-      - run:
-          name: "install packages"
-          command: npm install
+      - install_command
       - run:
           name: "build react app"
           command: npm run build
@@ -28,6 +28,7 @@ commands:
       - restore_cache:
           keys:
             - "node_modules"
+      - install_command
       - run:
           name: "testing app"
           command: npm run test
