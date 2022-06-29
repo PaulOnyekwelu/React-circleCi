@@ -28,4 +28,5 @@ jobs:
 
 workflows:
   React_App:
-    - build
+    jobs:
+      - build
