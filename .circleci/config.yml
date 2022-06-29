@@ -2,7 +2,7 @@ version: 2.1
 
 docker_default: &docker_default
   docker:
-    image: cimg/node:18.4.0
+    - image: cimg/node:18.4.0
 
 commands:
   build_command:
