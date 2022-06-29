@@ -21,10 +21,12 @@ commands:
       - save_cache:
           key: "build_folder"
           paths:
-            - /src/build
+            - /build
   test_command:
     steps:
       - checkout
+      - restore_cache:
+          key: "node_modules"
       - run:
           name: "testing app"
           command: npm run test
