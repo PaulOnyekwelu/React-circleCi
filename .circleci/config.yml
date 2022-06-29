@@ -45,4 +45,6 @@ workflows:
   React_App:
     jobs:
       - build
-      - test
+      - test:
+          requires:
+            - build
