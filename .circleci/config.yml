@@ -18,15 +18,29 @@ commands:
           key: "node_modules"
           paths:
             - /node_modules
+      - save_cache:
+          key: "build_folder"
+          paths:
             - /src/build
+  test_command:
+    steps:
+      - checkout
+      - run:
+          name: "testing app"
+          command: npm run test
 
 jobs:
   build:
     <<: *docker_default
     steps:
       - build_command
+  test:
+    <<: *docker_default
+    steps:
+      - test_command
 
 workflows:
   React_App:
     jobs:
       - build
+      - test
